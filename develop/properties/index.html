@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title> Define properties </title>
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="PatternFly Elements">
+
+
+  <meta property="og:title" content="Define properties" />
+<meta property="og:description" content="Property definitions provide a standard, streamlined way to declare the properties and attributes your component needs. Property definitions provide the following features:
+ Two-way binding between property and attribute values. Default value initialization. Data types (for properties). Observer function to be run when a value changes. Optional namespacing prefix for attribute names. Aliasing properties to one another, for phased deprecation. And more!  Introduction To introduce the topic, consider a component that counts how many times something has happened." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.patternfly.org/patternfly-elements/develop/properties/" />
+
+
+  
+
+
+
+
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://www.patternfly.org/patternfly-elements/develop/properties/">  
+
+  <link rel="icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/png/pfe-icon-blue.png" type="image/png">
+<link rel="shortcut icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/svg/pfe-icon-blue.svg">
+
+
+  <link href="https://www.patternfly.org/patternfly-elements/css/font.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.min.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.legenda.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/highlight.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/master.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.demo.css" rel="stylesheet" type="text/css">
+
+  
+  
+  <link rel="stylesheet" href="https://www.patternfly.org/patternfly-elements/src/sass/kube.min.f5a48bfa42bb352d96a84c512d3ca5fe48c4a7fe8300dc06d7a0fbb9d9ce75bd.css">
+
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/jquery-2.1.4.min.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript" src="https://www.patternfly.org/patternfly-elements/js/tocbot.min.js"></script>
+
+
+  
+</head>
+
+
+<body class="page-kube">
+  <header> 
+<div class="show-sm" id="top-sm">
+  <div id="nav-toggle-box">
+    <div id="nav-toggle-brand">
+      <section id="top-brand-sm">
+        <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+      </section>
+    </div>
+    <a data-component="offcanvas" data-target="#mobile-toc" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+  </div>
+</div>
+<div class="hide-sm" id="top">
+  <section id="top-brand">
+    <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+  </section>
+  <nav id="top-nav-main">
+    <ul>
+      
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/" >Getting Started</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/" >Develop</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/" >Theme</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav id="top-nav-extra">
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community">Community</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help">Help</a>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+
+
+<nav id="mobile-toc" class="hide">
+  <section class="inner-toc">
+    <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+    <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+            What&#39;s available?
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+            Browser Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+            Framework Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+            Polyfills
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+            Setup
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+            Create a PatternFly Element
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+            Templates &amp; slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+            JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+            Define properties
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+            Develop a Structure
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+            Write your HTML
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+            Write your CSS (or Sass)
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+            Integrate your JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+            Define your schema
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+            Write tests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+            Pull requests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+            Publishing Releases
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+            Theme palette
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+            Colors
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+            Layouts
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+            Theming slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+            Writing web component styles
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+            Dynamic HTML Templates
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+            Typography sizing
+          </a>
+        </li>
+      
+    </ul>
+
+    <h3>Site Info</h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+            Code of conduct
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+            Join the Community
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+            Get Help
+          </a>
+        </li>
+      
+    </ul>
+
+    
+    
+  </section>
+</nav>
+ </header>
+  <main>
+
+<article style="display: flex; flex-direction: row;">
+
+  
+  <nav id="main-toc">
+    <section class="inner-toc">
+      <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+      <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+              What&#39;s available?
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+              Browser Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+              Framework Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+              Polyfills
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+              Setup
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+              Create a PatternFly Element
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+              Templates &amp; slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+              JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+              Define properties
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+              Develop a Structure
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+              Write your HTML
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+              Write your CSS (or Sass)
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+              Integrate your JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+              Define your schema
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+              Write tests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+              Pull requests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+              Publishing Releases
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+              Theme palette
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+              Colors
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+              Layouts
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+              Theming slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+              Writing web component styles
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+              Dynamic HTML Templates
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+              Typography sizing
+            </a>
+          </li>
+        
+      </ul>
+
+      <h3>Site Info</h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+              Code of conduct
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+              Join the Community
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+              Get Help
+            </a>
+          </li>
+        
+      </ul>
+
+      
+      
+    </section>
+  </nav>
+
+  <section id="content" style="">
+    <header class="page-header">
+      <h1> Define properties</h1>
+      <p></p>
+    </header>
+
+    <ul id="posts">
+
+     <p>Property definitions provide a standard, streamlined way to declare the properties and attributes your component needs.  Property definitions provide the following features:</p>
+<ul>
+<li>Two-way binding between property and attribute values.</li>
+<li>Default value initialization.</li>
+<li>Data types (for properties).</li>
+<li>Observer function to be run when a value changes.</li>
+<li>Optional namespacing prefix for attribute names.</li>
+<li>Aliasing properties to one another, for phased deprecation.</li>
+<li>And more!</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>To introduce the topic, consider a component that counts how many times something has happened. It may have a tag of <code>&lt;pfe-count&gt;</code>, and a <code>count</code> attribute (<code>&lt;pfe-count count=&quot;0&quot;&gt;</code>) which sets the initial count.  We might also want a local property <code>this.count</code> for convenient referencing and updating of the count (ex: <code>this.count += 1</code> vs <code>this.setAttribute(this.getAttribute(&quot;count&quot;) + 1)</code>).</p>
+<p>A property definition for <code>count</code>:</p>
+<pre><code class="language-javascript">static get properties() {
+  return {
+    count: {
+      type: Number,
+      default: 0
+    }
+  };
+}
+</code></pre>
+<p>With this property definition for <code>count</code> we get:</p>
+<ul>
+<li><strong>A property</strong>: The property&rsquo;s name is <code>count</code>, so <code>this.count</code> is created and initialized to the default value, the number <code>0</code>.</li>
+<li><strong>An attribute</strong>: An attribute, <code>count</code> is also created, and will be kept in sync with <code>this.count</code>.  The `` prefix is explained <a href="#prefix">below</a>.</li>
+<li>And many other options for watching the property for changes, deprecating attributes, and more.</li>
+</ul>
+<p>All the options for property definitions are explained below, but first, a bit about how property/attribute pairs are synchronized.</p>
+<h2 id="property--attribute-binding">Property / attribute binding</h2>
+<p>As mentioned in the introduction, defining a property also creates an attribute, and the two values are kept in sync.  The attribute name is generated by converting the property name from camelCase into snake-case, and applying a prefix.  For instance, a property named <code>firstName</code> results in <code>first-name</code> which is then prefixed with `` to form <code>first-name</code>.  These behaviors can be configured with <a href="#prefix">prefix</a> and <a href="#attr">attr</a>.</p>
+<h2 id="type">type</h2>
+<p>Default: <code>String</code></p>
+<p>Three property types are currently supported: String, Number, and Boolean.</p>
+<p>Defines the data type for the property.  Values are stored in attributes as Strings, but are cast into the specified type when accessed via the property.</p>
+<h3 id="string">String</h3>
+<p>To store a string, create a property definition with <code>type: String</code>.</p>
+<pre><code class="language-javascript">name: {
+  type: String
+}
+</code></pre>
+<p>Valid values: any string, <code>null</code>, and <code>undefined</code>.
+Though all attribute values are technically strings, if you are assigning a <code>true/ false</code> paradigm or checking that a variable exists (implicit <code>true/false</code>, i.e., <code>hidden</code> or <code>required</code>), please assign that property a type of <code>Boolean</code>.  This will ensure the update and injection of that value is handled correctly by the base class.</p>
+<h3 id="number">Number</h3>
+<p>Similar to boolean, though attribute values are strings, if you are assigning a numerical value to your attribute, please use this type for your property.  Consider the use-case of <code>tabindex</code>; it will output a quoted string when assigned to the attribute but use a numerical type when you query for the property.
+To store a number, create a property definition with <code>type: Number</code>.</p>
+<pre><code class="language-javascript">count: {
+  type: Number
+}
+</code></pre>
+<p>In addition to number literals like <code>4</code>, the Number type supports some special values.  This table lists a few examples of property / attribute equivalence.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Attribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>4</code></td>
+<td><code>&quot;4&quot;</code></td>
+</tr>
+<tr>
+<td><code>-10</code></td>
+<td><code>&quot;-10&quot;</code></td>
+</tr>
+<tr>
+<td><code>NaN</code></td>
+<td><code>&quot;NaN&quot;</code></td>
+</tr>
+<tr>
+<td><code>Infinity</code></td>
+<td><code>&quot;Infinity&quot;</code></td>
+</tr>
+<tr>
+<td><code>-Infinity</code></td>
+<td><code>&quot;-Infinity&quot;</code></td>
+</tr>
+<tr>
+<td><code>undefined</code></td>
+<td><em>removes attribute</em></td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td><em>removes attribute</em></td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>this.count = NaN</code> (or <code>Number.NaN</code>) will result in <code>count=&quot;NaN&quot;</code>.</p>
+<p>Valid values: any Number, <code>NaN</code>, <code>null</code>, and <code>undefined</code>.</p>
+<h3 id="boolean">Boolean</h3>
+<p>Boolean properties behave just like <a href="https://html.spec.whatwg.org/dev/common-microsyntaxes.html#boolean-attribute">HTML boolean attributes</a> you might be familiar with, like <code>disabled</code> or <code>checked</code>.</p>
+<pre><code class="language-javascript">isLoading: {
+  type: Boolean
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Attribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true</code></td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><em>removes attribute</em></td>
+</tr>
+<tr>
+<td><code>&quot;hello I am true&quot;</code></td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+<tr>
+<td><code>undefined</code></td>
+<td><em>removes attribute</em></td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td><em>removes attribute</em></td>
+</tr>
+</tbody>
+</table>
+<p>When referencing a Boolean attribute, use <code>hasAttribute(name)</code> rather than <code>getAttribute(name)</code>.</p>
+<h3 id="handling-null-and-undefined">Handling <code>null</code> and <code>undefined</code></h3>
+<p>If a property is assigned to <code>null</code> or <code>undefined</code>, its associated attribute will be removed.  This is true regardless of the property&rsquo;s <code>type</code>.</p>
+<p>Example: <code>this.count = null</code> will result in the <code>count</code> attribute being removed.</p>
+<h2 id="default">default</h2>
+<p>Default: <code>undefined</code></p>
+<p>During the component&rsquo;s <code>connectedCallback</code>, values with defined defaults will be initialized in both properties and attributes.</p>
+<pre><code class="language-javascript">count: {
+  type: Number,
+  default: 0
+}
+</code></pre>
+<p>Example: since <code>count</code> has a default of <code>0</code>, when the component is connected and wasn&rsquo;t given a <code>count</code> attribute already, one will be created with the default value <code>0</code>.  In other words, <code>this.count === 0</code> and <code>this.getAttribute(&quot;count&quot;) === &quot;0&quot;</code>.</p>
+<h2 id="observer">observer</h2>
+<p>Default: <code>undefined</code></p>
+<p>Observers provide a quick way to wire up a function to be called whenever a value changes.</p>
+<p>You may provide an <code>observer</code> for any property, which is the string name of a (non-static) function inside the web component which will be called whenever the property changes.  Here&rsquo;s an example wherein changes to <code>count</code> will trigger the <code>handleCount</code> function.</p>
+<pre><code class="language-javascript">class PfeCount extends PFElement {
+
+  /* some boilerplate omitted */
+
+  static get properties() {
+    return {
+      count: {
+        type: Number,
+        observer: &quot;handleCount&quot;
+      }
+    }
+  }
+
+  handleCount(oldVal, newVal) {
+    this.log(`count changed from ${oldVal} to ${newVal}`);
+  }
+
+}
+</code></pre>
+<p>Observer functions are called with arguments <code>(oldVal, newVal)</code>.  Like property values, both arguments will be cast to the appropriate type, i.e. String, Number, or Boolean.</p>
+<h2 id="cascade">cascade</h2>
+<p>Default: <code>undefined</code></p>
+<p><code>cascade</code> allows an attribute value to be automatically copied to one or more child elements in the Light DOM or Shadow DOM<sup>[1]</sup>.  The value of <code>cascade</code> is a CSS-style selector which is used to match the children that should receive the values.  The selector is applied to the element&rsquo;s children in both the Light DOM and the Shadow DOM.</p>
+<p><sup>[1]</sup> There is not a way to target <em>only</em> the Light DOM or <em>only</em> the Shadow DOM.  If this is necessary, we recommend adding a unique identifier to the Shadow DOM elements and making use of the <code>:not</code> selector.</p>
+<p>Example, cascading an attribute <code>foo</code> to any <code>h1</code>, <code>h2</code>, or <code>h3</code> child elements.</p>
+<p><strong><pfe-foo></strong></p>
+<pre><code class="language-javascript">static get properties() {
+  return {
+    foo: {
+      type: String,
+      cascade: &quot;h1,h2,h3&quot;
+    }
+  };
+}
+</code></pre>
+<p>With this property definition, any <code>h1</code>, <code>h2</code>, or <code>h3</code> children will get the same attribute and value, such as:</p>
+<p><strong>Before connectedCallback</strong></p>
+<pre><code class="language-html">&lt;pfe-foo foo=&quot;hello&quot;&gt;
+    &lt;h1&gt;&lt;/h1&gt;
+&lt;/pfe-foo&gt;
+</code></pre>
+<p><strong>After connectedCallback</strong></p>
+<pre><code class="language-html">&lt;pfe-foo foo=&quot;hello&quot;&gt;
+    &lt;h1 foo=&quot;hello&quot;&gt;&lt;/h1&gt;
+&lt;/pfe-foo&gt;
+</code></pre>
+<p>Attribute values are only copied from parent to child, never the other way around.</p>
+<h2 id="alias">alias</h2>
+<p>Default: <code>undefined</code></p>
+<p>The <code>alias</code> field can be used to link two properties to each other.  <code>alias</code> expects to be given the name of another property, to which it will copy its value.  When a property value is changed, if it has an alias, the new value will be sent to the alias.</p>
+<p>Aliasing is intended to help when migrating to a new property/attribute name.  It allows for two different properties to be simultaneously &ldquo;active&rdquo;.</p>
+<p>Aliased values do not need to have a new set of definitions for cascade or observer as those states will be managed by the attribute to which it is being aliased (see example below).</p>
+<p>Example, an <code>old</code> property whose values will be forwarded along to a <code>new</code> property.</p>
+<pre><code class="language-javascript">static get properties() {
+  return {
+    new: {
+      type: Number,
+      default: 0,
+    },
+    old: {
+      type: Number,
+      alias: &quot;new&quot;
+    }
+  };
+}
+</code></pre>
+<p>With these property definitions, changes to <code>old</code> will be &ldquo;forwarded&rdquo; along to <code>new</code>.</p>
+<pre><code class="language-javascript">el.old = 4;
+el.new === 4; // true, because setting el.old caused the value to be copied into el.new
+</code></pre>
+<p>Two-way aliases are allowed.</p>
+<pre><code class="language-javascript">static get properties() {
+  return {
+    a: {
+      alias: &quot;b&quot;
+    },
+    b: {
+      alias: &quot;a&quot;
+    }
+  };
+}
+</code></pre>
+<h2 id="attr">attr</h2>
+<p>Default: <code>undefined</code></p>
+<p>The <code>attr</code> field overrides the property&rsquo;s default generated attribute name and specifies a custom name to be used as this property&rsquo;s bound attribute.</p>
+<p>The example below shows a property definition resulting in a property named <code>foo</code> (i.e., js: <code>this.foo</code>) and an attribute named <code>the-one-and-only-foo</code> (i.e., html: <code>&lt;pfe-foo the-one-and-only-foo&gt;</code>).</p>
+<pre><code class="language-javascript">static get properties() {
+  return {
+    foo: {
+      attr: &quot;the-one-and-only-foo&quot;
+    },
+  };
+}
+</code></pre>
+<p><code>attr</code>, along with <code>alias</code>, are primarily intended to help when migrating to a new property/attribute name.  It allows for two different properties to be simultaneously &ldquo;active&rdquo;.</p>
+<p>When using <code>attr</code>, <code>prefix: false</code> is implied, meaning that there will never be a <a href="#prefix">prefix</a> added to an attribute name specified with <code>attr</code>.</p>
+<h2 id="title">title</h2>
+<p>Default: <code>undefined</code></p>
+<p>The <code>title</code> field defines a human-friendly title for the property, which will be used to label the property&rsquo;s form fields in the Storybook-powered demo site.</p>
+<h2 id="observedattributes--attributechangedcallback">observedAttributes &amp; attributeChangedCallback</h2>
+<p>Property definitions are driven by PFElement&rsquo;s <code>attributeChangedCallback</code> and <code>observedAttributes</code>.  Due to this, any PatternFly Element using property definitions should not define an <code>attributeChangedCallback</code> (use <a href="#observer">observer</a> instead) or <code>observedAttributes</code> (attributes created by property definitions are automatically observed).</p>
+<p>If an element <em>must</em> have a custom <code>attributeChangedCallback</code>, it must call <code>super.attributeChangedCallback(...arguments)</code> within it.  The best practice is to not provide an <code>attributeChangedCallback</code>.</p>
+<h2 id="reserved-and-pre-existing-properties">Reserved and pre-existing properties</h2>
+<p>Because property names are attached directly to the HTMLElement, rather than a namespace (you could imagine <code>this.props.foo</code> instead of <code>this.foo</code>), care needs to be taken to not override existing properties except in special circumstances.</p>
+<p>HTMLElement objects have many properties, so there is a decent chance of name collision.  So why put PatternFly Elements' properties in the same namespace?  To allow binding observer functions to built-in attributes and properties.  For example, the system allows specifying an <a href="#observer">observer</a> function for <code>aria-hidden</code>.</p>
+<pre><code class="language-javascript">static get properties() {
+  return {
+    ariaHidden: {
+      observer: &quot;hiddenHandler&quot;,
+      default: &quot;true&quot;,
+      prefix: false
+    },
+    style: {
+      observer: &quot;styleHandler&quot;,
+      prefix: false
+    },
+  };
+}
+</code></pre>
+<p>It&rsquo;s important to note that there is <em>already</em> a property on HTMLElements called <code>ariaHidden</code>, which is automatically mapped to the attribute <code>aria-hidden</code> (in fact, this is the model that PatternFly Elements property/attribute pair bindings are based on).  Allowing use of &ldquo;reserved&rdquo; property names allows easy wiring of observer functions to native attributes, like <code>style</code> and <code>aria-*</code>.</p>
+<p>When overriding reserved property names:</p>
+<ul>
+<li>property/attribute two-way binding will <em>not</em> be initialized, with the assumption that a property/attribute pair for your property already exists in HTMLElement, as is the case with <code>aria*</code>, <code>style</code>, and many others.
+<ul>
+<li>as a result, <code>type</code> will be ignored because the value of the property and attribute are out of PFE&rsquo;s hands.</li>
+</ul>
+</li>
+<li>all other property definition features work as expected:
+<ul>
+<li><code>default</code> values will be honored</li>
+<li><code>observer</code> functions will be wired up</li>
+<li><code>cascade</code> will copy attribute values to children</li>
+</ul>
+<!-- - `prefix` will control prefixing of the attribute name (though you almost always will want `prefix: false`) -->
+<ul>
+<li><code>alias</code> will copy values to other properties</li>
+<li><code>attr</code> can specify the exact attribute name to be used</li>
+</ul>
+</li>
+</ul>
+<p>If <code>PFElement.debugLog(true)</code> has been called, the overriding of reserved property (and many other things) will be logged to the console.</p>
+<p><a href="../step-2a/">Move to Step 2: Develop (Develop a Structure)</a></p>
+
+
+    </ul>
+
+  </section>
+
+  <aside class="page-toc">
+    <h3>Page Contents</h3>
+    
+
+<div class="js-toc">
+  
+</div>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",
+function(){
+tocbot.init({
+
+tocSelector: '.js-toc',
+
+contentSelector: '#posts',
+
+headingSelector: 'h2'
+})
+}
+);
+</script>
+
+
+  </aside>
+</article>
+
+</main>
+  <footer>
+  
+
+<nav>
+  <ul>
+    <li><span>PatternFly Elements documentation</span></li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting started</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a>
+    </li>
+      <li>
+      <a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/community">Community</a>
+    </li>
+  </ul>
+</nav>
+<small>&copy; Licence MIT.</small>
+
+</footer>
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/kube.min.js" type="text/javascript">
+  </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title> Writing web component styles </title>
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="PatternFly Elements">
+
+
+  <meta property="og:title" content="Writing web component styles" />
+<meta property="og:description" content="Theme variables &amp; related functions Theme variables exist so that when a user changes a system property such as color or font-size, they see the effects of that trickle through the system to nearly every component.
+Several functions exist in the pfe-sass component to make it easier to theme individual components you are building!
+Color Rather than using only Sass variables $red or hexidecimal colors like #c00, please use the pfe-var() function, i." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" />
+
+
+  
+
+
+
+
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/">  
+
+  <link rel="icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/png/pfe-icon-blue.png" type="image/png">
+<link rel="shortcut icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/svg/pfe-icon-blue.svg">
+
+
+  <link href="https://www.patternfly.org/patternfly-elements/css/font.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.min.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.legenda.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/highlight.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/master.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.demo.css" rel="stylesheet" type="text/css">
+
+  
+  
+  <link rel="stylesheet" href="https://www.patternfly.org/patternfly-elements/src/sass/kube.min.f5a48bfa42bb352d96a84c512d3ca5fe48c4a7fe8300dc06d7a0fbb9d9ce75bd.css">
+
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/jquery-2.1.4.min.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript" src="https://www.patternfly.org/patternfly-elements/js/tocbot.min.js"></script>
+
+
+  
+</head>
+
+
+<body class="page-kube">
+  <header> 
+<div class="show-sm" id="top-sm">
+  <div id="nav-toggle-box">
+    <div id="nav-toggle-brand">
+      <section id="top-brand-sm">
+        <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+      </section>
+    </div>
+    <a data-component="offcanvas" data-target="#mobile-toc" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+  </div>
+</div>
+<div class="hide-sm" id="top">
+  <section id="top-brand">
+    <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+  </section>
+  <nav id="top-nav-main">
+    <ul>
+      
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/" >Getting Started</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/" >Develop</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/" >Theme</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav id="top-nav-extra">
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community">Community</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help">Help</a>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+
+
+<nav id="mobile-toc" class="hide">
+  <section class="inner-toc">
+    <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+    <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+            What&#39;s available?
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+            Browser Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+            Framework Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+            Polyfills
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+            Setup
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+            Create a PatternFly Element
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+            Templates &amp; slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+            JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+            Define properties
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+            Develop a Structure
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+            Write your HTML
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+            Write your CSS (or Sass)
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+            Integrate your JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+            Define your schema
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+            Write tests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+            Pull requests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+            Publishing Releases
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+            Theme palette
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+            Colors
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+            Layouts
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+            Theming slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+            Writing web component styles
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+            Dynamic HTML Templates
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+            Typography sizing
+          </a>
+        </li>
+      
+    </ul>
+
+    <h3>Site Info</h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+            Code of conduct
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+            Join the Community
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+            Get Help
+          </a>
+        </li>
+      
+    </ul>
+
+    
+    
+  </section>
+</nav>
+ </header>
+  <main>
+
+<article style="display: flex; flex-direction: row;">
+
+  
+  <nav id="main-toc">
+    <section class="inner-toc">
+      <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+      <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+              What&#39;s available?
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+              Browser Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+              Framework Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+              Polyfills
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+              Setup
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+              Create a PatternFly Element
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+              Templates &amp; slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+              JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+              Define properties
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+              Develop a Structure
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+              Write your HTML
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+              Write your CSS (or Sass)
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+              Integrate your JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+              Define your schema
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+              Write tests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+              Pull requests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+              Publishing Releases
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+              Theme palette
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+              Colors
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+              Layouts
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+              Theming slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+              Writing web component styles
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+              Dynamic HTML Templates
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+              Typography sizing
+            </a>
+          </li>
+        
+      </ul>
+
+      <h3>Site Info</h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+              Code of conduct
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+              Join the Community
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+              Get Help
+            </a>
+          </li>
+        
+      </ul>
+
+      
+      
+    </section>
+  </nav>
+
+  <section id="content" style="">
+    <header class="page-header">
+      <h1> Writing web component styles</h1>
+      <p></p>
+    </header>
+
+    <ul id="posts">
+
+     <h2 id="theme-variables--related-functions">Theme variables &amp; related functions</h2>
+<p>Theme variables exist so that when a user changes a system property such as color or font-size, they see the effects of that trickle through the system to nearly every component.</p>
+<p>Several functions exist in the <code>pfe-sass</code> component to make it easier to theme individual components you are building!</p>
+<h3 id="color">Color</h3>
+<p>Rather than using only Sass variables <code>$red</code> or hexidecimal colors like <code>#c00</code>, please use the <code>pfe-var()</code> function, i.e. <code>pfe-var(ui-base)</code>.</p>
+<p><em>Note: When using this as an assignment to a CSS variable, you will need wrap it in interpolation syntax to allow Sass to compile, i.e. <code>--pfe-foo--Color: #{pfe-color(ui-base)}</code>.</em></p>
+<p>This function does some heavy-lifting by looking up the value from the various maps available and returning the namespaced CSS variables for the theme, plus fallback color, in that order:</p>
+<pre><code class="language-sass">:host {
+  background-color: pfe-color(ui-base);
+}
+</code></pre>
+<p>returns:</p>
+<pre><code class="language-css">:host {
+  background-color: var(--pfe-theme--color--ui-base, #0477a4));
+}
+</code></pre>
+<p>Component color properties should almost always use <a href="https://raw.githubusercontent.com/starryeyez024/patternfly-theme/prerelease-1.0/dist/advanced-theme.css">theme colors</a> as values.</p>
+<p>Note that there is no &ldquo;light&rdquo; or &ldquo;dark&rdquo; color in the palette; only lighter/lightest and darker/darkest. It&rsquo;s all relative to the base color.</p>
+<pre><code class="language-text">Lightest
+Lighter
+Base
+Darker
+Darkest
+Accent
+Complement
+</code></pre>
+<h4 id="non-color-properties">Non-color Properties</h4>
+<p>Similar to defining color values, the <code>pfe-var</code> function looks up other details from the various maps available and returns the full <code>var</code> stack -&gt; variable name and fallback value.</p>
+<pre><code class="language-sass">:host {
+    font-size: pfe-var(font-size);
+}
+</code></pre>
+<p>returns:</p>
+<pre><code class="language-css">:host {
+    font-size: var(--pfe-theme--font-size, 16px);
+}
+</code></pre>
+<h4 id="broadcast-variables">Broadcast variables</h4>
+<p>These variables are designed to cascade and influence the text or link styles of <a href="https://www.patternfly.org/patternfly-elements/getting-started/#3-use-patternfly-elements-markup">content components nested inside container components</a>.  Typically container components come with background colors and need to communicate this to their children so that text and link colors can be adjusted for readability.</p>
+<p>Inside the stylesheet for a container component, the following snippet will allow that component to broadcast its context to its children. The <code>pfe-surfaces</code> and <code>pfe-contexts</code> mixins can be found in <code>pfe-sass/mixins/_custom-properties.scss</code>.  For these to work, please ensure you are importing pfe-sass and have the $LOCAL variable set to the name of your component at the top of your Sass file as shown below.</p>
+<p><strong>In your container component:</strong></p>
+<pre><code class="language-css">@import &quot;../../pfe-sass/pfe-sass&quot;;
+
+// name of the component, minus the pfe prefix:
+$LOCAL: band;
+
+// Pull in pfe-color settings for all supported surface colors
+@include pfe-surfaces;
+</code></pre>
+<p>This mixin will compile to the following CSS, one entry for each supported surface color (darkest, darker, base, lighter, lightest, accent, complement):</p>
+<pre><code class="language-css">:host([color=&quot;darker&quot;]) {
+  --pfe-band--BackgroundColor: var(--pfe-theme--color--surface--darker, #464646);
+  --context: var(--pfe-theme--color--surface--darker--context, dark);
+}
+</code></pre>
+<p>You can optionally customize this set by passing in a list of just the surfaces you would like added; you can also optionally use a different attribute name should you prefer.</p>
+<pre><code class="language-sass">@import &quot;../../pfe-sass/pfe-sass&quot;;
+
+$LOCAL: band;
+
+// Pull in pfe-color settings for all supported surface colors
+@include surfaces($surfaces: (lightest), $attr-name: background);
+</code></pre>
+<p>Would output:</p>
+<pre><code class="language-css">:host([background=&quot;lightest&quot;]) {
+  --pfe-band--BackgroundColor: var(--pfe-theme--color--surface--lightest, #ffffff);
+  --context: light;
+}
+</code></pre>
+<p>Next we&rsquo;ll look at how the content component can opt into the broadcast variables coming from the parent.</p>
+<p><strong><a name="pfe-contexts"></a>In your content component:</strong></p>
+<pre><code class="language-sass">@import &quot;../../pfe-sass/pfe-sass&quot;;
+
+// Pull in all contexts with broadcast variables
+@include pfe-contexts;
+</code></pre>
+<p>This mixin, <code>pfe-contexts</code>, will expand to print all the necessary broadcast variables in your compiled CSS to support the 3 contexts available (<code>light</code>, <code>dark</code>, and <code>saturated</code>), one for each supported context:</p>
+<pre><code class="language-css">:host([on=&quot;dark&quot;]) {
+  --pfe-broadcasted--text: var(--pfe-theme--color--text--on-dark, #fff);
+  --pfe-broadcasted--link: var(--pfe-theme--color--link--on-dark, #99ccff);
+  --pfe-broadcasted--link--hover: var(--pfe-theme--color--link--hover--on-dark, #cce6ff);
+  --pfe-broadcasted--link--focus: var(--pfe-theme--color--link--focus--on-dark, #cce6ff);
+  --pfe-broadcasted--link--visited: var(--pfe-theme--color--link--visited--on-dark, #b38cd9);
+  --pfe-broadcasted--link-decoration: none;
+  --pfe-broadcasted--link-decoration--hover: underline;
+  --pfe-broadcasted--link-decoration--focus: underline;
+  --pfe-broadcasted--link-decoration--visited: none;
+}
+
+/* IE11 fallback */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+  :host([on=&quot;dark&quot;]) {
+    color: #fff;
+    color: var(--pfe-theme--color--text--on-dark, #fff);
+  }
+}
+</code></pre>
+<p>You can optionally customize this set by passing in a list of just the contexts you would like supported; you can also optionally turn off fallback support for older browsers.</p>
+<pre><code class="language-sass">@import &quot;../../pfe-sass/pfe-sass&quot;;
+
+// Pull in all contexts with broadcast variables
+@include theme-contexts($contexts: (light, dark), $fallback: false);
+</code></pre>
+<h3 id="local-variables">Local variables</h3>
+<p>It is strongly encouraged you create &ldquo;local&rdquo; variables for properties that developers can override if needed, such as color or sizing. You may use the <code>pfe-local</code> function, which automatically creates an empty, component-specific variable, then the corresponding theme variable and appriopriate fallback if one exists. Here&rsquo;s an example of some local variables you would find in the <code>pfe-cta.scss</code>:</p>
+<pre><code class="language-sass">:host {
+    --pfe-cta--BorderRadius: 0;
+    --pfe-cta--Color:  #{pfe-apply-broadcast(link)};
+}
+</code></pre>
+<ul>
+<li>When utilizing variables which are scoped to the component, you should use the <code>pfe-local()</code> function to refer to them by the shorthand property name:</li>
+</ul>
+<pre><code class="language-sass">::slotted(*) {
+    color: #{pfe-local(Color--hover)};
+}
+</code></pre>
+<ul>
+<li>If you are using the function to set a variable stack inside a calc function (or any CSS function), you will need to add the interpolation syntax:</li>
+</ul>
+<pre><code class="language-sass">:host([priority]) {
+    padding: pfe-var(container-padding) calc(#{pfe-var(container-padding)} * 2);
+}
+</code></pre>
+<ul>
+<li>Naming conventions follow the same approach as outlined on the <a href="https://www.patternfly.org/v4/documentation/overview/global-css-variables">PatternFly Global Variables documentation.</a>.</li>
+</ul>
+<h4 id="tips--tricks-for-styling-components">Tips &amp; tricks for styling components</h4>
+<p>Avoid use of <code>!important</code> if possible, unless you are trying to force styles on a slotted element.  You will need to use  <code>!important</code> when styling slotted content because you will be competing with light DOM styles.</p>
+<ol>
+<li>
+<p>If you&rsquo;re not familiar with all the design system variables available, start by adding properties with raw hex values first. i.e., <code>color: #c00</code>.</p>
+</li>
+<li>
+<p>Next go back through your styles and add/replace with local variables, <code>color: var(--pfe-cta--Color, #c00)</code>.</p>
+<ul>
+<li><em>It&rsquo;s worth noting that every time we surface something as a variable, we offer an opportunity to lean away from the design system. There&rsquo;s no need to create a local variable for all properties though you will want to allow the theme variables to continue to influence your component so that it remains consistent with the look and feel of the site.</em></li>
+</ul>
+</li>
+<li>
+<p>Pull up the <code>pfe-sass/maps</code> directory and review the variables defined in the system.  Pick out the ones that match your <em>semantic</em> meaning most closely.  If the colors are off but the semantic meaning is right, please reach out to the design team about potentially adjusting either your mock-ups or the design system as a whole to reflect the change. <strong>Important note</strong>, please be sure the semantic meaning is correct for your use case. The meaning is far more important than getting the right hex value out of the maps. It&rsquo;s better to hardcode the hex value in your styles than to use the wrong variable just because the colors match; you risk custom themes wreaking havoc on your design.</p>
+</li>
+<li>
+<p>After you pick out the appropriate <em>semantic</em> variable, set up a $LOCAL-VARIABLES map at the top of your file to connect the name of your local variable with the mapped value you want to call.</p>
+<pre><code class="language-sass">$LOCAL-VARIABLES: (
+  PaddingTop: calc(#{pfe-var(container-spacer)} * 2)
+);
+</code></pre>
+<p>Then in your styles below, you can use <code>pfe-local</code> to make use of that value:</p>
+<pre><code class="language-sass">:host {
+  padding-top: pfe-local(PaddingTop);
+}
+</code></pre>
+<p>Which will output:</p>
+<pre><code class="language-css">:host {
+  padding-top: var(--pfe-foo--PaddingTop, calc(var(--pfe-theme--container-spacer, 16px) * 2));
+}
+</code></pre>
+</li>
+<li>
+<p>Add additional attributes to a component, to allow users to switch between variants without CSS overrides, i.e.  <code>&lt;pfe-card color=&quot;darkest&quot;&gt;</code></p>
+<ul>
+<li>Any component that can change background colors for light DOM content MUST provide values for the broadcast variables. The <code>pfe-contexts</code> mixin is useful to loop through system colors.  See above [pfe-contexts example][#pfe-contexts].</li>
+</ul>
+</li>
+</ol>
+<h4 id="example-of-a-components-sass-file">Example of a component&rsquo;s sass file</h4>
+<pre><code class="language-sass">// 1. Create local variable. Set value using color
+// function to look up theme variables.
+$LOCAL-VARIABLES: (
+    Color: pfe-var(ui-link)
+);
+
+
+// 2. Map the color property to the local variable
+:host ::slotted(a) {
+    color: pfe-local(Color);
+}
+
+// 3. Provide a new fallback value for a local variable when necessary. Continue using the helper functions to reference the theme.
+:host([color=&quot;accent&quot;]) ::slotted(a) {
+  color: pfe-local(Color, pfe-var(accent));
+}
+
+// 4. Override broadcasted last
+:host([on=&quot;dark&quot;]) ::slotted(a) {
+  color: pfe-local(Color, pfe-var(link--on-dark));
+}
+
+:host([on=&quot;dark&quot;][color=&quot;accent&quot;]) ::slotted(a) {
+  color: pfe-local(Color, pfe-var(accent--link));
+}
+</code></pre>
+<hr>
+<p><a name="broadcasted"></a></p>
+<h3 id="containers--broadcast-variables">Containers + broadcast variables</h3>
+<p>If the container allows changes to background colors, then it should also influence the children by setting values of broadcast colors.</p>
+<h4 id="notes-on-using-broadcast-colors-in-pfe-components">Notes on using broadcast colors in pfe-components</h4>
+<ol>
+<li>Only define CSS color <span style="text-decoration:underline;">property</span> once per element</li>
+<li>Set the value equal to local variable:  <br>
+<code>color: var(pfe-local--Color);</code></li>
+<li>In the pfe-component, do not set <span style="text-decoration:underline;">value</span> of the broadcasted variables, instead set local variable values equal to the value of broadcasted, then with fallback colors
+<ol>
+<li>Content components should never set the value of broadcasted vars, otherwise container components won&rsquo;t be able to pass them that information</li>
+</ol>
+</li>
+<li>Reset local variable values as needed for color attribute overrides.</li>
+</ol>
+<h2 id="troubleshooting-web-component-style-issues">Troubleshooting web component style issues</h2>
+<h3 id="problem-i-expect-the-pfe-cta-to-have-a-red-background-but-it-doesnt">Problem: I expect the pfe-cta to have a red background, but it doesn&rsquo;t</h3>
+<ol>
+<li>
+<p><strong>Inspect the element &amp; look for the style property</strong></p>
+<ul>
+<li>
+<p>Check the light DOM</p>
+</li>
+<li>
+<p>In the styles tab of web inspector, look for the CSS property <code>background</code>. Is the property present? Remember styles can be applied to <code>:host</code> as opposed to the actual component name, such as <code>pfe-cta</code>.</p>
+</li>
+</ul>
+<p>![Code block](/theme__code_block_1.png =450x)</p>
+<ul>
+<li>What is the value of the property? Try changing the value to a funny color.</li>
+</ul>
+</li>
+<li>
+<p><strong>Check the shadow DOM</strong></p>
+<ul>
+<li>Check if the property you expect is being applied elsewhere; i.e., some other element in the shadow root:</li>
+</ul>
+<p>![Code block](/theme__code_block_2.png =450x)</p>
+</li>
+<li>
+<p><strong>Check to see if the property is being overwritten</strong></p>
+<ul>
+<li>If the styles are being applied to the light DOM, and if it&rsquo;s still the wrong color, it could mean styles from elsewhere on the page are winning the specificity battle. <a href="https://developers.google.com/web/tools/chrome-devtools/css/overrides">Learn more about detecting overrides</a></li>
+</ul>
+<p>![Code block](/theme__code_block_3.png =450x)</p>
+<p>Options:
+1. Remove the styles that are more specific than your styles (may not be a viable option).
+2. Adjust the web component so that the styles are targeting the component itself, rather than it&rsquo;s children. Try using <code>:host { }</code>.
+3. Move the styles to target an element in the Shadow DOM where you&rsquo;ll have more control and little to no outside influence.
+4. If the styles are on a child of the web component, aka slotted content (like a link tag nested inside the <code>pfe-cta</code> tag), you might need to hook into <a href="https://docs.google.com/document/d/1P6ohcr13y0DTca_aow6Lm5qSnUcIdM56wu8Fc4SwE00/edit#heading=h.l0fiuwszzxzg">broadcast variables</a>.</p>
+</li>
+<li>
+<p><strong>Check to see if the value of the property is pointing to a CSS variable</strong>
+Sometimes CSS variables map to other CSS variables which have similar names, which can be confusing. Copy the exact name you are looking for and paste it into the <a href="https://developers.google.com/web/tools/chrome-devtools/css/reference#fiilter">web inspector filter</a>. Look for a plain hex value or RGBa value. For example:</p>
+<pre><code class="language-css">--pfe-cta--BackgroundColor: var(--pfe-theme--color--surface--accent, #fe460d);
+--pfe-theme--color--surface--accent: #ee0000;
+</code></pre>
+<p>Every time you hit a variable as the value, <a href="http://www.giphy.com/gifs/hu1kdgZ1ObIGPcENJ0">change it to a unusual color</a>, so you can verify that is the offending property.</p>
+</li>
+</ol>
+
+
+    </ul>
+
+  </section>
+
+  <aside class="page-toc">
+    <h3>Page Contents</h3>
+    
+
+<div class="js-toc">
+  
+</div>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",
+function(){
+tocbot.init({
+
+tocSelector: '.js-toc',
+
+contentSelector: '#posts',
+
+headingSelector: 'h2'
+})
+}
+);
+</script>
+
+
+  </aside>
+</article>
+
+</main>
+  <footer>
+  
+
+<nav>
+  <ul>
+    <li><span>PatternFly Elements documentation</span></li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting started</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a>
+    </li>
+      <li>
+      <a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/community">Community</a>
+    </li>
+  </ul>
+</nav>
+<small>&copy; Licence MIT.</small>
+
+</footer>
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/kube.min.js" type="text/javascript">
+  </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title> Define your schema </title>
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="PatternFly Elements">
+
+
+  <meta property="og:title" content="Define your schema" />
+<meta property="og:description" content="What is a schema?
+A schema can teach a system like a CMS or API how to understand our web component. By defining the supported slots, attributes, and events in our schema, we make our web components easy to plug into a number of systems. We also create a system by which we can easily update the defaults and acceptable values for our component without having to make changes to JavaScript." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.patternfly.org/patternfly-elements/develop/step-2e/" />
+
+
+  
+
+
+
+
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://www.patternfly.org/patternfly-elements/develop/step-2e/">  
+
+  <link rel="icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/png/pfe-icon-blue.png" type="image/png">
+<link rel="shortcut icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/svg/pfe-icon-blue.svg">
+
+
+  <link href="https://www.patternfly.org/patternfly-elements/css/font.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.min.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.legenda.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/highlight.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/master.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.demo.css" rel="stylesheet" type="text/css">
+
+  
+  
+  <link rel="stylesheet" href="https://www.patternfly.org/patternfly-elements/src/sass/kube.min.f5a48bfa42bb352d96a84c512d3ca5fe48c4a7fe8300dc06d7a0fbb9d9ce75bd.css">
+
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/jquery-2.1.4.min.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript" src="https://www.patternfly.org/patternfly-elements/js/tocbot.min.js"></script>
+
+
+  
+</head>
+
+
+<body class="page-kube">
+  <header> 
+<div class="show-sm" id="top-sm">
+  <div id="nav-toggle-box">
+    <div id="nav-toggle-brand">
+      <section id="top-brand-sm">
+        <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+      </section>
+    </div>
+    <a data-component="offcanvas" data-target="#mobile-toc" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+  </div>
+</div>
+<div class="hide-sm" id="top">
+  <section id="top-brand">
+    <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+  </section>
+  <nav id="top-nav-main">
+    <ul>
+      
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/" >Getting Started</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/" >Develop</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/" >Theme</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav id="top-nav-extra">
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community">Community</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help">Help</a>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+
+
+<nav id="mobile-toc" class="hide">
+  <section class="inner-toc">
+    <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+    <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+            What&#39;s available?
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+            Browser Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+            Framework Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+            Polyfills
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+            Setup
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+            Create a PatternFly Element
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+            Templates &amp; slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+            JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+            Define properties
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+            Develop a Structure
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+            Write your HTML
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+            Write your CSS (or Sass)
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+            Integrate your JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+            Define your schema
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+            Write tests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+            Pull requests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+            Publishing Releases
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+            Theme palette
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+            Colors
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+            Layouts
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+            Theming slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+            Writing web component styles
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+            Dynamic HTML Templates
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+            Typography sizing
+          </a>
+        </li>
+      
+    </ul>
+
+    <h3>Site Info</h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+            Code of conduct
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+            Join the Community
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+            Get Help
+          </a>
+        </li>
+      
+    </ul>
+
+    
+    
+  </section>
+</nav>
+ </header>
+  <main>
+
+<article style="display: flex; flex-direction: row;">
+
+  
+  <nav id="main-toc">
+    <section class="inner-toc">
+      <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+      <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+              What&#39;s available?
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+              Browser Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+              Framework Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+              Polyfills
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+              Setup
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+              Create a PatternFly Element
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+              Templates &amp; slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+              JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+              Define properties
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+              Develop a Structure
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+              Write your HTML
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+              Write your CSS (or Sass)
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+              Integrate your JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+              Define your schema
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+              Write tests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+              Pull requests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+              Publishing Releases
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+              Theme palette
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+              Colors
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+              Layouts
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+              Theming slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+              Writing web component styles
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+              Dynamic HTML Templates
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+              Typography sizing
+            </a>
+          </li>
+        
+      </ul>
+
+      <h3>Site Info</h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+              Code of conduct
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+              Join the Community
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+              Get Help
+            </a>
+          </li>
+        
+      </ul>
+
+      
+      
+    </section>
+  </nav>
+
+  <section id="content" style="">
+    <header class="page-header">
+      <h1> Define your schema</h1>
+      <p></p>
+    </header>
+
+    <ul id="posts">
+
+     <p><a href="https://json-schema.org/understanding-json-schema/about.html">What is a schema?</a></p>
+<p>A schema can teach a system like a CMS or API how to understand our web component.  By defining the supported slots, attributes, and events in our schema, we make our web components easy to plug into a number of systems.  We also create a system by which we can easily update the defaults and acceptable values for our component without having to make changes to JavaScript.</p>
+<p>Let&rsquo;s dig into the schema for our pfe-cool-element component:</p>
+<pre><code>{
+  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+  &quot;title&quot;: &quot;Cool element&quot;,
+  &quot;description&quot;: &quot;This element has a profile picture and a follow button.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;tag&quot;: &quot;pfe-cool-element&quot;,
+  &quot;class&quot;: &quot;PfeCoolElement&quot;,
+  &quot;category&quot;: &quot;content&quot;,
+  &quot;properties&quot;: {
+    &quot;slots&quot;: {
+      &quot;title&quot;: &quot;Slots&quot;,
+      &quot;description&quot;: &quot;Definition of the supported slots&quot;,
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;default&quot;: {
+          &quot;title&quot;: &quot;Default&quot;,
+          &quot;type&quot;: &quot;array&quot;,
+          &quot;namedSlot&quot;: false,
+          &quot;items&quot;: {
+            &quot;oneOf&quot;: [
+              {
+                &quot;$ref&quot;: &quot;raw&quot;
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;attributes&quot;: {
+      &quot;title&quot;: &quot;Attributes&quot;,
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;following&quot;: {
+          &quot;title&quot;: &quot;Follow this user&quot;,
+          &quot;type&quot;: &quot;boolean&quot;,
+          &quot;default&quot;: false,
+          &quot;prefixed&quot;: true,
+          &quot;observer&quot;: &quot;_followToggle&quot;
+        },
+        &quot;photo-url&quot;: {
+          &quot;title&quot;: &quot;Profile image&quot;,
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;observer&quot;: &quot;_addImage&quot;
+        }
+      }
+    },
+    &quot;events&quot;: {
+      &quot;title&quot;: &quot;Events&quot;,
+      &quot;description&quot;: &quot;Definition of the supported events&quot;,
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;follow&quot;: {
+          &quot;title&quot;: &quot;Follow&quot;,
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;default&quot;: &quot;pfe-cool-element:follow&quot;
+        }
+      }
+    }
+  },
+  &quot;required&quot;: [&quot;slots&quot;, &quot;attributes&quot;, &quot;events&quot;],
+  &quot;additionalProperties&quot;: false
+}
+</code></pre>
+<h2 id="general-information">General information</h2>
+<p>At the top of our schema is general information about our component: title, description, the tag name and class, and the category of component it falls under.  We also see the version of the schema draft we are using here.</p>
+<pre><code>  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+  &quot;title&quot;: &quot;Cool element&quot;,
+  &quot;description&quot;: &quot;This element has a profile picture and a follow button.&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;tag&quot;: &quot;pfe-cool-element&quot;,
+  &quot;class&quot;: &quot;PfeCoolElement&quot;,
+  &quot;category&quot;: &quot;content&quot;,
+</code></pre>
+<p>A schema is a JSON object with certain protected keys: <code>title</code>, <code>description</code>, <code>type</code>, and <code>required</code> are top among these.  For our web component, we specify the slots, attributes, and events as nested objects in the <code>properties</code> object of the overall component.</p>
+<h2 id="slots">Slots</h2>
+<p>We list out our slots in the properties object of the schema.  Every slot is an array type and can contain either specific tags or a generic <code>raw</code> reference which means any HTML can be accepted here.  If the slot in question is a named slot such as <code>&lt;slot name=&quot;pfe-cool-element--region&quot;&gt;</code>, change the <code>&quot;namedSlot&quot;</code> boolean to true.</p>
+<pre><code>&quot;slots&quot;: {
+  &quot;title&quot;: &quot;Slots&quot;,
+  &quot;description&quot;: &quot;Definition of the supported slots&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;default&quot;: {
+      &quot;title&quot;: &quot;Default&quot;,
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;namedSlot&quot;: false,
+      &quot;items&quot;: {
+        &quot;oneOf&quot;: [
+          {
+            &quot;$ref&quot;: &quot;raw&quot;
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="attributes">Attributes</h2>
+<p>This component example supports two attributes: <code>following</code> and <code>photo-url</code>. Both attributes are prefixed with `` to protect their namespacing and prevent collisions with protected attributes in HTML.  Note the <code>-c</code> which means that this attribute is specific to a component and not a global attribute.  Global attributes will be prefixed with <code>pfe-g</code> and should be set by the PFElement base class.  To indicate this prefixing, set <code>&quot;prefixed&quot;: true</code> on the object for that attribute.  Some attribute names will not be prefixed; in those cases, set the prefixed key to false.  Attributes are listed as properties and can use a variety of types.  Most will probably be of type <code>string</code> or <code>boolean</code> but <code>number</code> is also supported.</p>
+<pre><code>&quot;attributes&quot;: {
+  &quot;title&quot;: &quot;Attributes&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;following&quot;: {
+      &quot;title&quot;: &quot;Follow&quot;,
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: false,
+      &quot;prefixed&quot;: true,
+      &quot;observer&quot;: &quot;_followToggle&quot;
+    },
+    &quot;photo-url&quot;: {
+      &quot;title&quot;: &quot;Profile image&quot;,
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;observer&quot;: &quot;_addImage&quot;
+    }
+  },
+  &quot;required&quot;: [&quot;following]
+}
+</code></pre>
+<p>Note the required array at the bottom of the attributes property object: <code>&quot;required&quot;: [&quot;following]</code>.  This will set the <code>following</code> attribute as required. This means that if the attribute is not manually added to the component tag in the source, i.e.  <code>&lt;pfe-cool-element following&gt;</code>, then this attribute will be automatically added with a default value (if provided in the schema) when the component upgrades.</p>
+<p>For attributes with a set of specifically supported answers, such as a set of colors, the attribute is still of type <code>string</code> since the result assigned to the attribute is a string, but we can provide an <code>enum</code> against which to validate the input.  Multiple values are comma separated.</p>
+<pre><code>&quot;color&quot;: {
+  &quot;title&quot;: &quot;Colors&quot;,
+  &quot;type&quot;: &quot;string&quot;,
+  &quot;enum&quot;: [&quot;complement&quot;, &quot;accent&quot;]
+}
+</code></pre>
+<p>The <code>observer</code> property contains the name of the method that should be run when this attribute is updated.  If none is necessary, for attributes that only influence styles with no JS functionality for example, leave this property off.</p>
+<h2 id="events">Events</h2>
+<p>The events object contains any custom events that this component will fire and for which external apps or libraries can listen.</p>
+<pre><code>&quot;events&quot;: {
+  &quot;title&quot;: &quot;Events&quot;,
+  &quot;description&quot;: &quot;Definition of the supported events&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;follow&quot;: {
+      &quot;title&quot;: &quot;Follow&quot;,
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;default&quot;: &quot;pfe-cool-element:follow&quot;
+    }
+  }
+}
+</code></pre>
+<p>Now that our code works, we should create tests to ensure our element works as we iterate on it in the future.</p>
+<p><a href="../step-3">Move to Step 3: Test</a></p>
+
+
+    </ul>
+
+  </section>
+
+  <aside class="page-toc">
+    <h3>Page Contents</h3>
+    
+
+<div class="js-toc">
+  
+</div>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",
+function(){
+tocbot.init({
+
+tocSelector: '.js-toc',
+
+contentSelector: '#posts',
+
+headingSelector: 'h2'
+})
+}
+);
+</script>
+
+
+  </aside>
+</article>
+
+</main>
+  <footer>
+  
+
+<nav>
+  <ul>
+    <li><span>PatternFly Elements documentation</span></li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting started</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a>
+    </li>
+      <li>
+      <a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/community">Community</a>
+    </li>
+  </ul>
+</nav>
+<small>&copy; Licence MIT.</small>
+
+</footer>
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/kube.min.js" type="text/javascript">
+  </script>
+  
+</body>
+
+</html>

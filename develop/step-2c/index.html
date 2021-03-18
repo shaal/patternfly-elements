@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta name="generator" content="Hugo 0.79.0" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title> Write your CSS (or Sass) </title>
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  <meta name="author" content="PatternFly Elements">
+
+
+  <meta property="og:title" content="Write your CSS (or Sass)" />
+<meta property="og:description" content="We want the pfe-cool-element to have a profile photo, a username, and a follow button. Right now, it only contains the HTML structure, but we can style our element by updating our Sass (or CSS) to make it look the way we want.
+We&rsquo;ll be working in the /src/pfe-cool-element.scss file since we decided to use the Sass option in the PatternFly Element generator.
+Your Sass file will initially import additional Sass from the pfe-sass node module, but we can ignore that for now." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.patternfly.org/patternfly-elements/develop/step-2c/" />
+
+
+  
+
+
+
+
+  
+  
+  
+  
+
+  <link rel="canonical" href="https://www.patternfly.org/patternfly-elements/develop/step-2c/">  
+
+  <link rel="icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/png/pfe-icon-blue.png" type="image/png">
+<link rel="shortcut icon" href="https://www.patternfly.org/patternfly-elements/brand/logo/svg/pfe-icon-blue.svg">
+
+
+  <link href="https://www.patternfly.org/patternfly-elements/css/font.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.min.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.legenda.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/highlight.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/master.css" rel="stylesheet" type="text/css">
+  <link href="https://www.patternfly.org/patternfly-elements/css/kube.demo.css" rel="stylesheet" type="text/css">
+
+  
+  
+  <link rel="stylesheet" href="https://www.patternfly.org/patternfly-elements/src/sass/kube.min.f5a48bfa42bb352d96a84c512d3ca5fe48c4a7fe8300dc06d7a0fbb9d9ce75bd.css">
+
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/jquery-2.1.4.min.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript" src="https://www.patternfly.org/patternfly-elements/js/tocbot.min.js"></script>
+
+
+  
+</head>
+
+
+<body class="page-kube">
+  <header> 
+<div class="show-sm" id="top-sm">
+  <div id="nav-toggle-box">
+    <div id="nav-toggle-brand">
+      <section id="top-brand-sm">
+        <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+      </section>
+    </div>
+    <a data-component="offcanvas" data-target="#mobile-toc" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+  </div>
+</div>
+<div class="hide-sm" id="top">
+  <section id="top-brand">
+    <a href="https://www.patternfly.org/patternfly-elements/" title="home"><span>PatternFly</span>Elements</a>
+  </section>
+  <nav id="top-nav-main">
+    <ul>
+      
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/" >Getting Started</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/" >Develop</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/" >Theme</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav id="top-nav-extra">
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community">Community</a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help">Help</a>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+
+
+<nav id="mobile-toc" class="hide">
+  <section class="inner-toc">
+    <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+    <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+            What&#39;s available?
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+            Browser Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+            Framework Support
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+            Polyfills
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+            Setup
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+            Create a PatternFly Element
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+            Templates &amp; slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+            JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+            Define properties
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+            Develop a Structure
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+            Write your HTML
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+            Write your CSS (or Sass)
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+            Integrate your JavaScript
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+            Define your schema
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+            Write tests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+            Pull requests
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+            Publishing Releases
+          </a>
+        </li>
+      
+    </ul>
+    <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+            Theme palette
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+            Colors
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+            Layouts
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+            Theming slots
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+            Writing web component styles
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+            Dynamic HTML Templates
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+            Typography sizing
+          </a>
+        </li>
+      
+    </ul>
+
+    <h3>Site Info</h3>
+    <ul>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+            Code of conduct
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+            Join the Community
+          </a>
+        </li>
+      
+        <li>
+          <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+            Get Help
+          </a>
+        </li>
+      
+    </ul>
+
+    
+    
+  </section>
+</nav>
+ </header>
+  <main>
+
+<article style="display: flex; flex-direction: row;">
+
+  
+  <nav id="main-toc">
+    <section class="inner-toc">
+      <span class="label big" style="margin-bottom: 1.5rem;">Version 1.3.2</span>
+
+      <h3><a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting Started</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/component-status/" title="What&#39;s available?">
+              What&#39;s available?
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/browser-support/" title="Browser Support">
+              Browser Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/framework-support/" title="Framework Support">
+              Framework Support
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/getting-started/polyfills/" title="Polyfills">
+              Polyfills
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1a/" title="Setup">
+              Setup
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-1b/" title="Create a PatternFly Element">
+              Create a PatternFly Element
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/templates/" title="Templates &amp; slots">
+              Templates &amp; slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/javascript/" title="JavaScript">
+              JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/properties/" title="Define properties">
+              Define properties
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2a/" title="Develop a Structure">
+              Develop a Structure
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2b/" title="Write your HTML">
+              Write your HTML
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2c/" title="Write your CSS (or Sass)">
+              Write your CSS (or Sass)
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2d/" title="Integrate your JavaScript">
+              Integrate your JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-2e/" title="Define your schema">
+              Define your schema
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-3/" title="Write tests">
+              Write tests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-4/" title="Pull requests">
+              Pull requests
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/develop/step-5/" title="Publishing Releases">
+              Publishing Releases
+            </a>
+          </li>
+        
+      </ul>
+      <h3><a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a></h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/theme-palette/" title="Theme palette">
+              Theme palette
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/" title="Colors">
+              Colors
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/" title="Layouts">
+              Layouts
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/" title="Theming slots">
+              Theming slots
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/" title="Writing web component styles">
+              Writing web component styles
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/" title="Dynamic HTML Templates">
+              Dynamic HTML Templates
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/theme/typography-sizing/" title="Typography sizing">
+              Typography sizing
+            </a>
+          </li>
+        
+      </ul>
+
+      <h3>Site Info</h3>
+      <ul>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/code-of-conduct/" title="Code of conduct">
+              Code of conduct
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/community/" title="Join the Community">
+              Join the Community
+            </a>
+          </li>
+        
+          <li>
+            <a href="https://www.patternfly.org/patternfly-elements/site-info/get-help/" title="Get Help">
+              Get Help
+            </a>
+          </li>
+        
+      </ul>
+
+      
+      
+    </section>
+  </nav>
+
+  <section id="content" style="">
+    <header class="page-header">
+      <h1> Write your CSS (or Sass)</h1>
+      <p></p>
+    </header>
+
+    <ul id="posts">
+
+     <p>We want the <code>pfe-cool-element</code> to have a profile photo, a username, and a follow button. Right now, it only contains the HTML structure, but we can style our element by updating our Sass (or CSS) to make it look the way we want.</p>
+<p>We&rsquo;ll be working in the <code>/src/pfe-cool-element.scss</code> file since we decided to use the Sass option in the PatternFly Element generator.</p>
+<p>Your Sass file will initially import additional Sass from the pfe-sass node module, but we can ignore that for now. The second part has a <code>:host</code> selector that makes our element display as a block element.</p>
+<pre><code>@import &quot;../../pfe-sass/pfe-sass&quot;;
+
+$LOCAL: cool-element;
+
+$LOCAL-VARIABLES: ();
+
+:host {
+  display: block;
+}
+
+:host([hidden]) {
+  display: none;
+}
+</code></pre>
+<p>When structuring your Sass, a good rule of thumb for organization is:</p>
+<pre><code>// Define your hooks and their default values at the top of the file
+$LOCAL-VARIABLES: (
+  Property: default-value,
+  region: (
+    Property: default-value
+  )
+);
+
+:host {
+  // Apply the hooks to the appropriate properties
+  property: pfe-local(Property);
+}
+
+// Modifiers should update local variables
+// this will override any variables set externally
+// attributes are always stronger than variable overrides
+:host([modifiers]) {
+  $modifier: ( Property: updated-value );
+  @include pfe-print-local($modifier);  // outputs: --pfe-cool-element--Property: updated-value;
+}
+
+// Light DOM styles
+::slotted(*) {
+  &gt; typography defaults
+}
+
+// Class-based shadow DOM styles
+.pfe-cool-element {
+  &amp;__region {
+    // Apply the hooks to the appropriate properties in their regions too
+    property: pfe-local(Property, $region: region);
+
+    // 1. default styles
+    // 2. media queries
+
+    &amp;[modifiers] {
+      --pfe-cool-element__region--Property: updated;
+    }
+  }
+  // Modifiers can also be set using classes and scoped to the Shadow DOM
+  &amp;--modifier {
+    --pfe-cool-element--Property: updated;
+  }
+}
+</code></pre>
+<p>Now we can update our styles, like so:</p>
+<pre><code>@import &quot;../../pfe-sass/pfe-sass&quot;;
+
+$LOCAL: cool-element;
+
+$LOCAL-VARIABLES: (
+  Width: 128px,
+  Padding: calc(#{pfe-var(container-spacer)} * 2),
+  profile: (
+    BackgroundColor: pfe-var(surface--base),
+    context: pfe-var(surface--base--context),
+    Border: 2px solid #333
+  )
+);
+
+:host {
+  // Hardcoded, not connected to theme
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  // Local variable hooks
+  width: pfe-local(Width);
+  padding: pfe-local(Padding);
+
+  // Global theme variable hooks only
+  font-family: pfe-var(font-family);
+  box-shadow: pfe-var(box-shadow--sm);
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.pfe-cool-element {
+  &amp;__profile {
+    background-color: pfe-local(BackgroundColor, $region: profile);
+    // Any time background color is updated, context should be set too
+    // This sets the `on=` attribute on the component
+    --context: #{pfe-local(context, $region: profile)};
+
+    // Invoke the broadcasted default typography styles
+    @include pfe-contexts;
+
+    // The above mixins outputs:
+    // :host([on=&quot;dark&quot;]) {
+    //   --pfe-broadcasted--text: var(--pfe-theme--color--text--on-dark, #fff);
+    //   --pfe-broadcasted--link: var(--pfe-theme--color--link--on-dark, #99ccff);
+    //   --pfe-broadcasted--link--hover: var(--pfe-theme--color--link--hover--on-dark, #cce6ff);
+    //   --pfe-broadcasted--link--focus: var(--pfe-theme--color--link--focus--on-dark, #cce6ff);
+    //   --pfe-broadcasted--link--visited: var(--pfe-theme--color--link--visited--on-dark, #b38cd9);
+    //   --pfe-broadcasted--link-decoration: none;
+    //   --pfe-broadcasted--link-decoration--hover: underline;
+    //   --pfe-broadcasted--link-decoration--focus: underline;
+    //   --pfe-broadcasted--link-decoration--visited: none;
+    // }
+
+    border: pfe-local(Border, $region: profile);
+    border-radius: pfe-var(surface--border-radius);
+
+    // Hardcoded values
+    width: 50px;
+    height: 50px;
+    margin-bottom: 16px;
+  }
+  &amp;__social--follow {
+    margin-top: 16px;
+  }
+}
+</code></pre>
+<p>After saving and viewing our demo page, our profile element looks much better.</p>
+<p><img src="https://www.patternfly.org/patternfly-elements/demo-page-css-step.png" alt="Demo Page CSS"></p>
+<p>A couple of things to note:</p>
+<ol>
+<li>The <code>:host</code> selector sets the styles of the container element <code>&lt;pfe-cool-element&gt;</code>.</li>
+<li>The <code>button</code> styles are encapsulated within this element and will not bleed out, meaning that there&rsquo;s no chance these styles will affect other buttons on the page. Feeling confident that your element will always look the same when it&rsquo;s distributed is one of the main advantages of the shadow DOM. Check out the Styling section of <a href="https://developers.google.com/web/fundamentals/web-components/shadowdom#styling">Shadow DOM v1: Self-Contained Web Components</a> to learn what else you can do when applying styles to the shadow DOM.</li>
+</ol>
+<p>Now that our demo page is updated, let&rsquo;s take a look at what happened to the ES6 version of the element in the root of our element&rsquo;s directory.</p>
+<pre><code>import PFElement from '../pfelement/dist/pfelement.js';
+
+class PfeCoolElement extends PFElement {
+  get html() {
+    return `&lt;style&gt;:host{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;width:128px;width:var(--pfe-cool-element--Width,128px);padding:calc(16px * 2);padding:var(--pfe-cool-element--Padding,calc(var(--pfe-theme--container-spacer,16px) * 2));font-family:Overpass,Overpass,Helvetica,helvetica,arial,sans-serif;font-family:var(--pfe-theme--font-family, &quot;Overpass&quot;, Overpass, Helvetica, helvetica, arial, sans-serif);-webkit-box-shadow:0 .0625rem .125rem 0 rgba(19,19,19,.2);box-shadow:0 .0625rem .125rem 0 rgba(19,19,19,.2);-webkit-box-shadow:var(--pfe-theme--box-shadow--sm,0 .0625rem .125rem 0 rgba(19,19,19,.2));box-shadow:var(--pfe-theme--box-shadow--sm,0 .0625rem .125rem 0 rgba(19,19,19,.2))}:host([hidden]){display:none}.pfe-cool-element__profile{background-color:#dfdfdf;background-color:var(--pfe-cool-element__profile--BackgroundColor,var(--pfe-theme--surface--base,#dfdfdf));--theme:var(--pfe-cool-element__profile--theme,var(--pfe-theme--surface-base--theme,light));border:2px solid #333;border:var(--pfe-cool-element__profile--Border,2px solid #333);border-radius:3px;border-radius:var(--pfe-theme--surface--border-radius,3px);width:50px;height:50px;margin-bottom:16px}.pfe-cool-element__profile :host([on=dark]){--pfe-broadcasted--text:var(--pfe-theme--color--text--on-dark, #fff);--pfe-broadcasted--link:var(--pfe-theme--color--link--on-dark, #99ccff);--pfe-broadcasted--link--hover:var(--pfe-theme--color--link--hover--on-dark, #cce6ff);--pfe-broadcasted--link--focus:var(--pfe-theme--color--link--focus--on-dark, #cce6ff);--pfe-broadcasted--link--visited:var(--pfe-theme--color--link--visited--on-dark, #b38cd9);--pfe-broadcasted--link-decoration:none;--pfe-broadcasted--link-decoration--hover:underline;--pfe-broadcasted--link-decoration--focus:underline;--pfe-broadcasted--link-decoration--visited:none}@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){.pfe-cool-element__profile :host{color:#333!important;color:var(--pfe-theme--text,#333)!important}}.pfe-cool-element__profile :host([on=saturated]){--pfe-broadcasted--text:var(--pfe-theme--color--text--on-saturated, #fff);--pfe-broadcasted--link:var(--pfe-theme--color--link--on-saturated, #fff);--pfe-broadcasted--link--hover:var(--pfe-theme--color--link--hover--on-saturated, white);--pfe-broadcasted--link--focus:var(--pfe-theme--color--link--focus--on-saturated, white);--pfe-broadcasted--link--visited:var(--pfe-theme--color--link--visited--on-saturated, #b38cd9);--pfe-broadcasted--link-decoration:underline;--pfe-broadcasted--link-decoration--hover:underline;--pfe-broadcasted--link-decoration--focus:underline;--pfe-broadcasted--link-decoration--visited:underline}@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){.pfe-cool-element__profile :host{color:#333!important;color:var(--pfe-theme--text,#333)!important}}.pfe-cool-element__profile :host([on=light]){--pfe-broadcasted--text:var(--pfe-theme--color--text, #333);--pfe-broadcasted--link:var(--pfe-theme--color--link, #06c);--pfe-broadcasted--link--hover:var(--pfe-theme--color--link--hover, #003366);--pfe-broadcasted--link--focus:var(--pfe-theme--color--link--focus, #003366);--pfe-broadcasted--link--visited:var(--pfe-theme--color--link--visited, rebeccapurple);--pfe-broadcasted--link-decoration:none;--pfe-broadcasted--link-decoration--hover:underline;--pfe-broadcasted--link-decoration--focus:underline;--pfe-broadcasted--link-decoration--visited:none}@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){.pfe-cool-element__profile :host{color:#333!important;color:var(--pfe-theme--text,#333)!important}}.pfe-cool-element__social--follow{margin-top:16px}
+/*# sourceMappingURL=pfe-card.min.css.map */
+&lt;/style&gt;
+&lt;div class=&quot;pfe-cool-element__profile&quot; id=&quot;profile-pic&quot;&gt;&lt;/div&gt;
+&lt;slot&gt;&lt;/slot&gt;
+&lt;div class=&quot;pfe-cool-element__social&quot;&gt;
+  &lt;button class=&quot;pfe-cool-element__social--follow&quot;&gt;Follow&lt;/button&gt;
+&lt;/div&gt;`;
+  }
+
+  static get tag() {
+    return &quot;pfe-cool-element&quot;;
+  }
+
+  get templateUrl() {
+    return &quot;pfe-cool-element.html&quot;;
+  }
+
+  get styleUrl() {
+    return &quot;pfe-cool-element.scss&quot;;
+  }
+
+  constructor() {
+    super(PfeCoolElement);
+  }
+}
+
+PFElement.create(PfeCoolElement);
+
+export default PfeCoolElement;
+</code></pre>
+<p>You&rsquo;ll notice <code>&lt;style&gt;</code> contains everything we just wrote in our Sass file. Sass variables and functions will resolve into vanilla CSS before being injected into the web component.  An autoprefixer and minifier will also be run on your styles before being injected so you don&rsquo;t need to worry about vendor prefixing when writing styles.</p>
+<p>Now that our <code>pfe-cool-element</code> is more appealing, we&rsquo;ll add the follow button&rsquo;s interaction and fill in the profile photo. We can accomplish both of these tasks by updating the <code>/src/pfe-cool-element.js</code> file.</p>
+<p><a href="https://www.patternfly.org/patternfly-elements/theme/color-palette/">Learn more about applying a theme here</a></p>
+<p><a href="../step-2d">Move to Step 2: Develop (Javascript)</a></p>
+
+
+    </ul>
+
+  </section>
+
+  <aside class="page-toc">
+    <h3>Page Contents</h3>
+    
+
+<div class="js-toc">
+  
+</div>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",
+function(){
+tocbot.init({
+
+tocSelector: '.js-toc',
+
+contentSelector: '#posts',
+
+headingSelector: 'h2'
+})
+}
+);
+</script>
+
+
+  </aside>
+</article>
+
+</main>
+  <footer>
+  
+
+<nav>
+  <ul>
+    <li><span>PatternFly Elements documentation</span></li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/getting-started">Getting started</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/develop">Develop</a>
+    </li>
+      <li>
+      <a href="https://www.patternfly.org/patternfly-elements/theme">Theme</a>
+    </li>
+    <li>
+      <a href="https://www.patternfly.org/patternfly-elements/community">Community</a>
+    </li>
+  </ul>
+</nav>
+<small>&copy; Licence MIT.</small>
+
+</footer>
+
+
+  <script src="https://www.patternfly.org/patternfly-elements/js/kube.min.js" type="text/javascript">
+  </script>
+  
+</body>
+
+</html>

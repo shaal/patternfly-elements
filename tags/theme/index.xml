@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>theme on PatternFly Elements</title>
+    <link>https://www.patternfly.org/patternfly-elements/tags/theme/</link>
+    <description>Recent content in theme on PatternFly Elements</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.patternfly.org/patternfly-elements/tags/theme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Development overview</title>
+      <link>https://www.patternfly.org/patternfly-elements/develop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/develop/</guid>
+      <description>The PatternFly Elements pattern library Before getting started, it&amp;rsquo;s important to note that because this is a library, each of the components within it are designed to work together. For this reason, elements should follow some basic guidelines:
+Guidelines for building a PatternFly Element  An element should be designed to be simple and easy to understand. If it seems complicated, ask:  Why is it complicated? Functionality? Content? Design? Can it be broken up into smaller pieces?</description>
+    </item>
+    
+    <item>
+      <title>Theming overview</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/</guid>
+      <description>Theming 101 When referring to the &amp;ldquo;theme&amp;rdquo; in PatternFly Elements, we are talking about a set of CSS variables that, when built into the styles of the components, allow for a consistent styling across a site. Theme values are generically named using a BEM approach and focus on broad design concepts which makes them reusable in a variety of contexts.
+Every component has these theme values in their styles, many utilizing the colors defined in the palette.</description>
+    </item>
+    
+    <item>
+      <title>Theme palette</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/theme-palette/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/theme-palette/</guid>
+      <description>.color-preview { display: inline-block; width: 1em; height: 1em; vertical-align: middle; background-color: var(--bg, #fff); border: 1px solid #444; }  List of theme palette variables These variables are global hooks to override colors, fonts, spacing and more throughout the library of web components. Generally this is all you need, though component specific variables are also available. Feel free to copy this list and define the values needed for your site or application.</description>
+    </item>
+    
+    <item>
+      <title>Colors</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/color-palette/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/color-palette/</guid>
+      <description>Skip to this page if you are looking for a list of all the system variables.
+Color Theory Text &amp;amp; links Text and links, being fundamental pieces of any web property, have their own set of variables. These variables assume a light background by default, assigning typography colors that pass accessibility when placed on white or very light gray contexts. In addition, we provide contextual variables for these typographical elements for when they exist inside a dark or saturated context.</description>
+    </item>
+    
+    <item>
+      <title>Layouts</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/pfe-layouts/</guid>
+      <description>.pfe-l-grid  * { background: #e0d7ee; padding: 8px; }    Grid &amp;lt;section&amp;gt; &amp;lt;h3&amp;gt;Pure Grid&amp;lt;/h3&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid pfe-m-gutters pfe-m-all-6-col pfe-m-all-4-col-on-md pfe-m-all-3-col-on-lg&amp;quot;&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;h4&amp;gt;Code&amp;lt;/h4&amp;gt; &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;lang-markup&amp;quot;&amp;gt;&amp;amp;lt;div class=&amp;quot;pfe-l-grid pfe-m-gutters pfe-m-all-6-col pfe-m-all-4-col-on-md pfe-m-all-3-col-on-lg&amp;quot;&amp;amp;gt;  &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;Item&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; 
+&amp;lt;section&amp;gt; &amp;lt;h3&amp;gt;Bootstrap-style Columns&amp;lt;/h3&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid pfe-m-gutters&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item&amp;quot;&amp;gt;Default Item&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-2-col&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-2-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-10-col&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-10-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-4-col&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-4-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-4-col&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-4-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-4-col&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-4-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-6-col pfe-m-3-col-on-md&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-6-col pfe-m-3-col-on-md&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-6-col pfe-m-3-col-on-md pfe-m-startat-7-col-on-md&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-6-col pfe-m-3-col-on-md pfe-m-startat-7-col-on-md&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pfe-l-grid__item pfe-m-6-col pfe-m-3-col-on-md&amp;quot;&amp;gt;&amp;lt;code&amp;gt;pfe-m-6-col pfe-m-3-col-on-md&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;h4&amp;gt;Code&amp;lt;/h4&amp;gt; &amp;lt;pre&amp;gt;&amp;lt;code class=&amp;quot;lang-markup&amp;quot;&amp;gt;&amp;amp;lt;div class=&amp;quot;pfe-l-grid pfe-m-gutters&amp;quot;&amp;amp;gt;  &amp;lt;div class=&amp;ldquo;pfe-l-grid__item&amp;rdquo;&amp;gt;Default Item&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-2-col&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-2-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-10-col&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-10-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-4-col&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-4-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-4-col&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-4-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-4-col&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-4-col&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-6-col pfe-m-3-col-on-md&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-6-col pfe-m-3-col-on-md&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-6-col pfe-m-3-col-on-md pfe-m-startat-7-col-on-md&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-6-col pfe-m-3-col-on-md pfe-m-startat-7-col-on-md&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;ldquo;pfe-l-grid__item pfe-m-6-col pfe-m-3-col-on-md&amp;rdquo;&amp;gt;&amp;lt;code&amp;gt;pfe-m-6-col pfe-m-3-col-on-md&amp;lt;/code&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Theming slots</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/pfe-theme-slots/</guid>
+      <description>Slot basics Vocab tip: Elements that can be inserted into slots are known as slotable; when an element has been inserted in a slot, it is said to be slotted.
+At first glace, there seem to be lots of &amp;ldquo;gotchas&amp;rdquo; related to web components, and a lot of documentation. Here’s a simplified guide with some basic code examples.
+  Slots are places to pass content or markup into specific regions within your web component template.</description>
+    </item>
+    
+    <item>
+      <title>Writing web component styles</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/writing-web-component-styles/</guid>
+      <description>Theme variables &amp;amp; related functions Theme variables exist so that when a user changes a system property such as color or font-size, they see the effects of that trickle through the system to nearly every component.
+Several functions exist in the pfe-sass component to make it easier to theme individual components you are building!
+Color Rather than using only Sass variables $red or hexidecimal colors like #c00, please use the pfe-var() function, i.</description>
+    </item>
+    
+    <item>
+      <title>Dynamic HTML Templates</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/pfe_dynamic_templates/</guid>
+      <description>Attributes &amp;amp; variables Should you need to capture information via an attribute property on your web component, such as a number, URL, or some other piece of information that does not need to be exposed to search engines, here’s how you make that happen:
+&amp;lt;my component how-many-bananas=&amp;quot;4&amp;quot;&amp;gt; &amp;lt;/my-component&amp;gt;  In your component&amp;rsquo;s definition:
+static get properties() { return { numberBananas: { type: Number, attr: &amp;quot;how-many-bananas&amp;quot; } } } connectedCallback() { super.</description>
+    </item>
+    
+    <item>
+      <title>Typography sizing</title>
+      <link>https://www.patternfly.org/patternfly-elements/theme/typography-sizing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.patternfly.org/patternfly-elements/theme/typography-sizing/</guid>
+      <description>Typography sizing variables    Pixels PF Global Title and Text (body copy) Semantic HTML     Titles       48px 6xl --pf-global--FontSize--6xl --pf-c--title--m-6xl--FontSize    40px 5xl --pf-global--FontSize--5xl --pf-c--title--m-5xl--FontSize    36px 4xl --pf-global--FontSize--4xl --pf-c--title--m-4xl--FontSize    28px 3xl --pf-global--FontSize--3xl --pf-c--title--m-3xl--FontSize --pf-c--content--h1--FontSize   24px 2xl --pf-global--FontSize--2xl --pf-c--title--m-2xl--FontSize --pf-c--content--h2--FontSize   20px xl --pf-global--FontSize--xl  --pf-c--title--m-xl--FontSize  --pf-c--content--h3--FontSize   18px lg --pf-global--FontSize--lg  --pf-c--title--m-lg--FontSize  --pf-c--content--h4--FontSize   16px md --pf-global--FontSize--md  --pf-c--title--m-md--FontSize  --pf-c--content--h5--FontSize   14px sm --pf-global--FontSize--sm  --pf-c--title--m-sm--FontSize  --pf-c--content--h6--FontSize   12px  --pf-global--FontSize--xs  --pf-c--title--m-xs--FontSize     Content       20px xl --pf-global--FontSize--xl  --pf-c--text--m-xl--FontSize     18px lg --pf-global--FontSize--lg  --pf-c--text--m-lg--FontSize     16px md --pf-global--FontSize--md  --pf-c--text--m-md--FontSize  --pf-c--content--FontSize   14px sm --pf-global--FontSize--sm  --pf-c--text--m-sm--FontSize     12px xs --pf-global--FontSize--xs  --pf-c--text--m-xs--FontSize      Typography classes &amp;amp; mixin    Pixels PF Class Mixin     Titles      48px 6xl .</description>
+    </item>
+    
+  </channel>
+</rss>
